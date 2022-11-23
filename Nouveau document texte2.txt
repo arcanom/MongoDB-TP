@@ -1,0 +1,37 @@
+Insérer 3 dossiers patients avec au moins 1 historique parpatient
+
+db.patient.insertMany([{firstname: "Mohamed", lastname: "Deloin", age:30,history:[{desease:"rhume",treatement:"sirop"},{desease:"grippe",treatement:"anti-biotique"}]},{firstname:"Billy",lastname:"deter",age:25,history:[{desease:"Entorse",treatement:"Bandage"}]},{firstname:"Amine",lastname:"matué",age:25,history:[{desease:"Luxuation Epaule",treatement:"Atele"}]}])
+
+Mettre à jour les données d’un patient avec nouvel un âge, unnouveau nom et un nouvel historique medical.
+db.patient.updateOne({_id:ObjectId("637cdc52342425847f6f79ae")},{$set: {lastname: "matuer",age:32,history:[{desease:"fracture clavicule", treatement:"atele"}]}} )
+
+
+Trouver tous les patients qui ont un âge supérieur à 29 ans.
+db.patient.find({age: {$gt:29}})
+
+Trouver tous les patients qui ont un âge supérieur à 29 ans.
+db.patient.deleteMany({'history.desease': "rhume"})
+
+tp2
+db.users.insertOne({name:"Chuck Norris",age:77,hobbies:["Karate","Kung-Fu","Ruling the world"]})
+
+db.users.find({name:"Chuck Norris"})
+
+
+db.users.find({name:"Chuck Norris"},{_id:0})
+
+db.users.find({$and:[{age:{$gte:20}},{age:{$lte:25}}]})
+
+db.users.find({$and:[{age:{$gte:30}},{age:{$lte:40}},{gender:"male"}]})
+
+db.users.find({'address.state':"Louisiana"})
+
+db.users.find().sort({age:-1}).limit(20)
+
+db.users.find({$and:[{age:30},{gender:"female"}]}).count()
+
+db.users.updateMany({},{$unset:{phone:""}})
+
+db.users.updateOne({name:"Chuck Norris"},{$set:{age:"infinity"}})
+
+ db.users.updateMany({age:{$gte:50}},{$addToSet: {hobbies:"jardinage"}})
