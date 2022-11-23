@@ -17,7 +17,6 @@ db.users.insertOne({name:"Chuck Norris",age:77,hobbies:["Karate","Kung-Fu","Ruli
 
 db.users.find({name:"Chuck Norris"})
 
-
 db.users.find({name:"Chuck Norris"},{_id:0})
 
 db.users.find({$and:[{age:{$gte:20}},{age:{$lte:25}}]})
