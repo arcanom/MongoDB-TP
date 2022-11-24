@@ -1,0 +1,11 @@
+db.livres.aggregate([{$match:{authors : {$in:["Toru Ishida"] }}},{$sort:{booktitle:1,'pages.start':1}} ])
+
+db.livres.aggregate([{$match:{authors : {$in:["Toru Ishida"] }}},{$sort:{booktitle:1,'pages.start':1}},{$project:{booktitle:1,'pages.start':1,'pages.end':1}} ])
+
+db.livres.aggregate([{$match:{authors : {$in:["Toru Ishida"] }}},{$sort:{booktitle:1,'pages.start':1}},{$project:{booktitle:1,'pages.start':1,'pages.end':1}},{$count:"nbre"} ])
+
+db.livres.aggregate([{$match:{authors : {$in:["Toru Ishida"]}, year:{$gte:2011} }},{$sort:{booktitle:1,'pages.start':1}},{$project:{booktitle:1,'pages.start':1,'pages.end':1,type:1}},{$count:"nbre"} ])
+
+db.livres.aggregate({$match:{year:{$gte:2011}}},{$sortByCount:"$type"})
+
+ db.livres.aggregate({ $unwind : "$authors" },{$group:{_id:"$authors",count:{$count:{}} }},{$sort:{count:-1}})
